@@ -1,6 +1,6 @@
 package io.twitter.reporter.twitter.to.kafka.service;
 
-import io.twitter.reporter.twitter.to.kafka.config.TwitterToKafkaConfiguration;
+import io.twitter.reporter.config.TwitterToKafkaConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import twitter4j.FilterQuery;
@@ -16,7 +16,7 @@ public class TwitterStreamService {
 
     private final TwitterStream twitterStream;
 
-    private final TwitterToKafkaConfiguration configuration;
+    private final io.twitter.reporter.config.TwitterToKafkaConfiguration configuration;
 
     public TwitterStreamService(final TwitterToKafkaConfiguration configuration,
                                 final StreamListener streamListener) {
