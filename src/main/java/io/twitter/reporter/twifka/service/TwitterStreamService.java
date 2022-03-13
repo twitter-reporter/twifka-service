@@ -1,4 +1,4 @@
-package io.twitter.reporter.twitter.to.kafka.service;
+package io.twitter.reporter.twifka.service;
 
 import io.twitter.reporter.config.TwitterToKafkaConfiguration;
 import lombok.extern.slf4j.Slf4j;
@@ -16,19 +16,17 @@ public class TwitterStreamService {
 
     private final TwitterStream twitterStream;
 
-    private final io.twitter.reporter.config.TwitterToKafkaConfiguration configuration;
+    private final TwitterToKafkaConfiguration twitterToKafkaConfiguration;
 
-    public TwitterStreamService(final TwitterToKafkaConfiguration configuration,
+    public TwitterStreamService(final TwitterToKafkaConfiguration twitterToKafkaConfiguration,
                                 final StreamListener streamListener) {
         this.twitterStream = new TwitterStreamFactory().getInstance();
         this.twitterStream.addListener(streamListener);
-        this.configuration = configuration;
+        this.twitterToKafkaConfiguration = twitterToKafkaConfiguration;
     }
 
     public void start() {
-        final String[] keywords = configuration.getKeywords().toArray(new String[0]);
-        log.info("Filtering stream with keywords: [{}]", keywords);
-        final FilterQuery filterQuery = new FilterQuery(keywords);
+        final FilterQuery filterQuery = addFilter();
 
         twitterStream.filter(filterQuery);
     }
@@ -39,5 +37,11 @@ public class TwitterStreamService {
             log.info("Shutting down the Twitter stream...");
             twitterStream.shutdown();
         }
+    }
+
+    private FilterQuery addFilter() {
+        final String[] keywords = twitterToKafkaConfiguration.getTwitterKeywords().toArray(new String[0]);
+        log.info("Filtering stream with keywords: [{}]", keywords);
+        return new FilterQuery(keywords);
     }
 }

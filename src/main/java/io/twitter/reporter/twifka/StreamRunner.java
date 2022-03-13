@@ -1,6 +1,6 @@
-package io.twitter.reporter.twitter.to.kafka;
+package io.twitter.reporter.twifka;
 
-import io.twitter.reporter.twitter.to.kafka.service.TwitterStreamService;
+import io.twitter.reporter.twifka.service.TwitterStreamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

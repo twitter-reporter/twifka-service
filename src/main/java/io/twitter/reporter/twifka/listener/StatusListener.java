@@ -1,4 +1,4 @@
-package io.twitter.reporter.twitter.to.kafka.listener;
+package io.twitter.reporter.twifka.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.kafka.reporter</groupId>
+        <groupId>io.twitter.reporter</groupId>
         <artifactId>service-parent-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>twitter-to-kafka-service</artifactId>
+    <artifactId>twifka-service</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Twitter to Kafka Service</name>
 
