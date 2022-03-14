@@ -1,6 +1,6 @@
 package io.twitter.reporter.twifka.service;
 
-import io.twitter.reporter.config.TwitterToKafkaConfiguration;
+import io.twitter.reporter.config.TwifkaConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import twitter4j.FilterQuery;
@@ -16,13 +16,13 @@ public class TwitterStreamService {
 
     private final TwitterStream twitterStream;
 
-    private final TwitterToKafkaConfiguration twitterToKafkaConfiguration;
+    private final TwifkaConfiguration twifkaConfiguration;
 
-    public TwitterStreamService(final TwitterToKafkaConfiguration twitterToKafkaConfiguration,
+    public TwitterStreamService(final TwifkaConfiguration twifkaConfiguration,
                                 final StreamListener streamListener) {
         this.twitterStream = new TwitterStreamFactory().getInstance();
         this.twitterStream.addListener(streamListener);
-        this.twitterToKafkaConfiguration = twitterToKafkaConfiguration;
+        this.twifkaConfiguration = twifkaConfiguration;
     }
 
     public void start() {
@@ -40,8 +40,9 @@ public class TwitterStreamService {
     }
 
     private FilterQuery addFilter() {
-        final String[] keywords = twitterToKafkaConfiguration.getTwitterKeywords().toArray(new String[0]);
+        final String[] keywords = twifkaConfiguration.getTwitterKeywords().toArray(new String[0]);
         log.info("Filtering stream with keywords: [{}]", keywords);
+
         return new FilterQuery(keywords);
     }
 }

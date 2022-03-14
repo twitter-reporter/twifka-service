@@ -34,7 +34,7 @@
         </dependency>
 
         <dependency>
-            <groupId>io.kafka.reporter</groupId>
+            <groupId>io.twitter.reporter</groupId>
             <artifactId>config-service</artifactId>
         </dependency>
 

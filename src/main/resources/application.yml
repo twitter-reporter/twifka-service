@@ -1,6 +1,22 @@
-twitter.to.kafka:
-  twitter-keywords:
+twitter.reporter:
+  twifka.twitter-keywords:
     - Java
     - Microservices
     - Kafka
     - Elasticsearch
+  retry-config:
+    initial-interval-in-ms: 1000
+    max-interval-in-ms: 1000
+    multiplier: 2.0
+    max-attempts: 3
+    sleep-time-in-ms: 2000
+
+  kafka-hq:
+    "bootstrapServers": "localhost:19092,localhost:29092,localhost:39092"
+    "schemaRegistryUrlKey": "schema.registry.url"
+    "schemaRegistryUrl": "http://localhost:8081"
+    "topicName": "twitter-topic"
+    "topicNamesToCreate":
+      - "twitter-topic"
+    "partitionsCount": 3
+    "replicationFactor": 3
